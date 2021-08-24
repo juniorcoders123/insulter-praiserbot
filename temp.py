@@ -150,10 +150,10 @@ max_1 = len(praises)
 
 
 st.title("Junior Coders Insulter & Praiser Bot")
-name = st.text_input("Enter your name")
+name = st.text_input("Enter a name")
 
-insultbtn = st.button("Insult Me")
-praisebtn = st.button("Praise Me")
+insultbtn = st.button("Insult")
+praisebtn = st.button("Praise")
 
 
 
