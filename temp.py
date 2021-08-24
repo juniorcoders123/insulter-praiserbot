@@ -1,6 +1,9 @@
 import streamlit as st
 from random import randint
 from gtts import gTTS
+from googletrans import Translator
+
+
 
 
 insults = [
@@ -148,43 +151,70 @@ max = len(insults)
 max_1 = len(praises)
 
 
-
+langs = ("English","French","Spanish","Hindi","Bengali")
 st.title("Junior Coders Insulter & Praiser Bot")
-name = st.text_input("Enter a name")
-
-insultbtn = st.button("Insult")
-praisebtn = st.button("Praise")
+name = st.text_input("Enter your name")
+langchoose = st.selectbox('Select Language', langs)
 
 
+
+insultbtn = st.button("Insult Me")
+praisebtn = st.button("Praise Me")
+
+translate = Translator()
 
 if insultbtn:
     if name == '':
         st.warning("Name cannot be empty")
     else:
+        if langchoose == "English":
+            langcode = 'en'
+        elif langchoose == "Spanish":
+            langcode = 'es'
+        elif langchoose == "French":
+            langcode = 'fr'
+        elif langchoose == "Hindi":
+            langcode = 'hi'
+        if langchoose == "Bengali":
+            langcode = 'bn'
         chosen = randint(0, max)
         insultorpr = name + ", " + insults[chosen]
-        tts = gTTS(insultorpr)
+        text = translate.translate(insultorpr,dest=langcode)
+        tts = gTTS(text=text.text,lang=langcode)
         tts.save('example.mp3')
         audio_file = open(f"example.mp3", "rb")
         audio_bytes = audio_file.read()
         st.markdown(f"## Insult audio:")
         st.audio(audio_bytes, format="audio/mp3", start_time=0)
         st.markdown(f"## Insult text:")
-        st.write(insultorpr)
+        st.write(text.text)
 
 
 if praisebtn:
     if name == '':
         st.warning("Name cannot be empty")
     else:
+        if langchoose == "English":
+            langcode = 'en'
+        elif langchoose == "Spanish":
+            langcode = 'es'
+        elif langchoose == "French":
+            langcode = 'fr'
+        elif langchoose == "Hindi":
+            langcode = 'hi'
+        if langchoose == "Bengali":
+            langcode = 'bn'
         chosen_1 = randint(0, max_1)
         insultorpr = name + ", " + praises[chosen_1]
-        tts = gTTS(insultorpr)
+        text = translate.translate(insultorpr, dest=langcode)
+        tts = gTTS(text=text.text, lang=langcode)
         tts.save('example.mp3')
         audio_file = open(f"example.mp3", "rb")
         audio_bytes = audio_file.read()
         st.markdown(f"## Praise audio:")
         st.audio(audio_bytes, format="audio/mp3", start_time=0)
         st.markdown(f"## Praise text:")
-        st.write(insultorpr)
+        st.write(text.text)
+
+
 
