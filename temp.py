@@ -11,7 +11,6 @@ insults = [
 "You look like someone set your face on fire and then put it out with a hammer.",
 "The only thing attracted to you is gravity",
 "You’re not good looking enough to be a model, but you’re not smart enough to be anything else",
-"If you’d like to know what sexual position produces the ugliest babies, you should ask your mother.",
 "Can you speak a little louder? I can’t hear you over the sound of how stupid you are.",
 "Why are you even talking to me? So your self esteem can match your IQ?",
 "I’m not insulting you, I’m describing you.",
@@ -153,13 +152,13 @@ max_1 = len(praises)
 
 langs = ("English","French","Spanish","Hindi","Bengali")
 st.title("Junior Coders Insulter & Praiser Bot")
-name = st.text_input("Enter your name")
+name = st.text_input("Enter a name")
 langchoose = st.selectbox('Select Language', langs)
 
 
 
-insultbtn = st.button("Insult Me")
-praisebtn = st.button("Praise Me")
+insultbtn = st.button("Insult")
+praisebtn = st.button("Praise")
 
 translate = Translator()
 
